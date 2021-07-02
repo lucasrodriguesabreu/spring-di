@@ -1,9 +1,6 @@
 package br.com.lucas.springdi;
 
-import br.com.lucas.springdi.controllers.ConstructorInjectedController;
-import br.com.lucas.springdi.controllers.MyController;
-import br.com.lucas.springdi.controllers.PropertyInjectedController;
-import br.com.lucas.springdi.controllers.SetterInjectedController;
+import br.com.lucas.springdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,10 +11,15 @@ public class SpringDiApplication {
     public static void main(String[] args) {
         ApplicationContext ctx =  SpringApplication.run(SpringDiApplication.class, args);
 
+        I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+        System.out.println(i18nController.sayGreeting());
+
+        System.out.println("______________________");
+
         MyController myController = (MyController) ctx.getBean("myController");
 
-        String greeting = myController.sayGreeting();
-        System.out.println(greeting);
+        System.out.println("Primary Bean");
+        System.out.println(myController.sayGreeting());
 
         System.out.println("-------------");
         System.out.println("Com Property");
